@@ -7,7 +7,7 @@ require './cave.rb'
 #   end
 # end
 
-example =[
+initial_energy_levels =[
 [5,4,8,3,1,4,3,2,2,3],
 [2,7,4,5,8,5,4,7,1,1],
 [5,2,6,4,5,5,6,1,7,3],
@@ -20,29 +20,37 @@ example =[
 [5,2,8,3,7,5,1,5,2,6],
 ]
 
-grid = example.map.with_index do |row, y|
-  row.map.with_index do |value, x|
-    Octopus.new(x_axis: x+1, y_axis: y+1, energy_level: value)
-  end
-end
+cave = Cave.new(initial_energy_levels: initial_energy_levels)
+cave.display_status
+
+# 100.times do (i)
+#   cave.cave_age_up
+#   cave.display
+# end
+
+# grid = example.map.with_index do |row, y|
+#   row.map.with_index do |value, x|
+#     Octopus.new(x_axis: x+1, y_axis: y+1, energy_level: value)
+#   end
+# end
 
 
-@@nb_flash = 0
-cave = Cave.new(grid: grid)
+# @@nb_flash = 0
+# cave = Cave.new(grid: grid)
 
-(0..100).each do |i|
-  puts
-  puts i
-  puts "########################################"
-  puts "########################################"
-  print cave.display_energy_level
-  cave.cave_age_up
+# (0..100).each do |i|
+#   puts
+#   puts i
+#   puts "########################################"
+#   puts "########################################"
+#   print cave.display_energy_level
+#   cave.cave_age_up
   
-  while cave.energy_levels.include?(10) do
-    cave.implement_flashes
-    cave.increment_last_flashes
-  end
-  cave.reset_octopus  
-  puts
-  puts @@nb_flash  
-end
+#   while cave.energy_levels.include?(10) do
+#     cave.implement_flashes
+#     cave.increment_last_flashes
+#   end
+#   cave.reset_octopus  
+#   puts
+#   puts @@nb_flash  
+# end

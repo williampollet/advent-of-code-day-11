@@ -1,8 +1,8 @@
 class Octopus
-  def initialize(x_axis:, y_axis:, energy_level:)
+  def initialize(x_axis:, y_axis:, initial_energy_level:)
     @x_axis = x_axis
     @y_axis = y_axis
-    @energy_level = energy_level
+    @energy_level = initial_energy_level
     @energy_increment = 0
   end
 
