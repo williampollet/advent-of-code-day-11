@@ -6,7 +6,7 @@ class Octopus
     @energy_increment = 0
   end
 
-  attr_accessor :x_axis, :y_axis, :energy_level, :just_flashed, :energy_increment
+  attr_accessor :x_axis, :y_axis, :energy_level, :energy_increment
 
   def age_up
     @energy_level += 1
@@ -17,12 +17,9 @@ class Octopus
   end
   
   def apply_energy_increment
-    if @energy_level < 10 && (@energy_level + @energy_increment) >= 10
-      @@nb_flash += 1
-      @energy_level = 10
-    else
+    @energy_level < 10 && (@energy_level + @energy_increment) >= 10 ?
+      @energy_level = 10 :
       @energy_level += @energy_increment
-    end
 
     @energy_increment = 0
   end
