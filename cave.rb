@@ -3,18 +3,20 @@ class Cave
     @grid = initialize_grid(initial_energy_levels)
     @current_step = 0
     @flash_count = 0
+    @synchronized = false
 
     display_status
   end
 
-  attr_accessor :grid, :current_step, :flash_count
+  attr_accessor :grid, :current_step, :flash_count, :synchronized
   
   def display_status
     puts "\n",
          "🐙"*20,
          "At STEP = #{current_step}",
          "flash count so far: #{flash_count}",
-         "Current energy levels : "
+         "is synchronized: #{synchronized}",
+         "Current energy levels: "
     display_energy_level
   end
 
@@ -23,6 +25,7 @@ class Cave
     cave_age_up
     propagate_flashes
     update_flash_count
+    @synchronized = uniq_value_count?
   end  
   
   private
@@ -92,5 +95,9 @@ class Cave
         .map { |octopus| octopus.energy_level}
         .select{ |level| level == 0}
         .count
+  end
+      
+  def uniq_value_count?
+    grid.to_a.flatten.map { |octopus| octopus.energy_level}.uniq.count == 1
   end
 end
